@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let playersHtml = '';
             if (data.data.players && data.data.players.length > 0) {
-                playersHtml = '<div><span>Players:</span><ul>';
+                playersHtml = '<div><span>Player List:</span><ul>';
                 data.data.players.forEach(player => {
                     playersHtml += `<li>Name: ${player.name}, Frags: ${player.frags}, Ping: ${player.ping}</li>`;
                 });
