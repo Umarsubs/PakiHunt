@@ -7,7 +7,7 @@ document.getElementById('fetchButton').addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://your-gitlab-project-id.gitlab.io/server-info?address=${address}`);
+        const response = await fetch(`https://cod4mw-serverinfo-api.glitch.me/${address}`);
         const data = await response.json();
 
         const serverDataDiv = document.getElementById('serverData');
