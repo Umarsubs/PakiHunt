@@ -16,12 +16,9 @@ document.getElementById('fetchButton').addEventListener('click', async () => {
         } else {
             serverDataDiv.innerHTML = `
                 <h3>Server Info</h3>
-                <p><strong>Host:</strong> ${data.host}</p>
-                <p><strong>Port:</strong> ${data.port}</p>
-                <p><strong>Game:</strong> ${data.data.raw.game}</p>
-                <p><strong>Map:</strong> ${data.data.map}</p>
-                <p><strong>Players:</strong> ${data.data.raw.numplayers} / ${data.data.maxplayers}</p>
-                <p><strong>Server Name:</strong> ${data.data.name}</p>
+                <p><strong>Server:</strong> ${data.name}</p>
+                <p><strong>Map:</strong> ${data.map}</p>
+                <p><strong>Players:</strong> ${players} / ${maxplayers}</p>
             `;
         }
     } catch (error) {
