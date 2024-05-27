@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.data.players && data.data.players.length > 0) {
                 playersHtml = '<div><span>Player List:</span><ul>';
                 data.data.players.forEach(player => {
-                    playersHtml += `<li>Name: ${player.name}| Ping: ${player.ping}</li>`;
+                    playersHtml += `<li>Name: ${player.name}   |   Ping: ${player.ping}</li>`;
                 });
                 playersHtml += '</ul></div>';
             } else {
