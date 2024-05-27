@@ -35,10 +35,3 @@ h1 {
     font-weight: bold;
 }
 
-.raw-details pre {
-    background: #333;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
-}
