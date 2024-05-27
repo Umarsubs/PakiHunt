@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const serverInfoHtml = `
                 <div class="server-details">
-                    <div><span>Host:</span> ${data.host}</div>
                     <div><span>Name:</span> ${data.data.name}</div>
                     <div><span>Map:</span> ${data.data.map}</div>
                     <div><span>Players:</span> ${data.data.players.length} / ${data.data.maxplayers}</div>
