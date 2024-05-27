@@ -3,15 +3,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const fetchServerInfo = async () => {
         try {
-            const response = await fetch('https://cod4mw-serverinfo-api.glitch.me/157.175.22.227:29101'); // Assuming your JSON file is named server_info.json
+            const response = await fetch('https://cod4mw-serverinfo-api.glitch.me/157.175.22.227:29101');
             const data = await response.json();
+
+            let playersHtml = '';
+            if (data.data.players && data.data.players.length > 0) {
+                playersHtml = '<div><span>Players:</span><ul>';
+                data.data.players.forEach(player => {
+                    playersHtml += `<li>Name: ${player.name}, Frags: ${player.frags}, Ping: ${player.ping}</li>`;
+                });
+                playersHtml += '</ul></div>';
+            } else {
+                playersHtml = '<div><span>Players:</span> No players online</div>';
+            }
 
             const serverInfoHtml = `
                 <div class="server-details">
                     <div><span>Host:</span> ${data.host}</div>
                     <div><span>Name:</span> ${data.data.name}</div>
                     <div><span>Map:</span> ${data.data.map}</div>
-                    <div><span>Players:</span>  ${data.data.players} / ${data.data.maxplayers}</div>
+                    <div><span>Players:</span> ${data.data.players.length} / ${data.data.maxplayers}</div>
+                    ${playersHtml}
                 </div>
             `;
 
