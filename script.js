@@ -1,57 +1,31 @@
-// script.js
+document.getElementById('fetchButton').addEventListener('click', async () => {
+    const address = document.getElementById('serverAddress').value;
 
-const apps = [
-    {
-        id: "app1",
-        name: "App 1",
-        description: "Description of App 1",
-        price: 9.99
-    },
-    {
-        id: "app2",
-        name: "App 2",
-        description: "Description of App 2",
-        price: 14.99
+    if (!address) {
+        alert('Please enter a server address.');
+        return;
     }
-];
 
-let cartItems = [];
+    try {
+        const response = await fetch(`https://your-gitlab-project-id.gitlab.io/server-info?address=${address}`);
+        const data = await response.json();
 
-function addToCart(appId) {
-    const app = getAppDetails(appId);
-    cartItems.push(app);
-    updateCartDisplay();
-}
-
-function checkout() {
-    if (cartItems.length === 0) {
-        alert("Your cart is empty. Please add items to proceed.");
-    } else {
-        // Perform the checkout process
-        // Redirect to payment gateway or display payment options
-        alert("Checkout process initiated. Please proceed to payment.");
-        clearCart();
+        const serverDataDiv = document.getElementById('serverData');
+        if (data.error) {
+            serverDataDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+        } else {
+            serverDataDiv.innerHTML = `
+                <h3>Server Info</h3>
+                <p><strong>Host:</strong> ${data.host}</p>
+                <p><strong>Port:</strong> ${data.port}</p>
+                <p><strong>Game:</strong> ${data.data.raw.game}</p>
+                <p><strong>Map:</strong> ${data.data.map}</p>
+                <p><strong>Players:</strong> ${data.data.raw.numplayers} / ${data.data.maxplayers}</p>
+                <p><strong>Server Name:</strong> ${data.data.name}</p>
+            `;
+        }
+    } catch (error) {
+        document.getElementById('serverData').innerHTML = `<p>Error fetching server data.</p>`;
+        console.error('Error:', error);
     }
-}
-
-function getAppDetails(appId) {
-    return apps.find(app => app.id === appId);
-}
-
-function updateCartDisplay() {
-    const cartItemsElement = document.getElementById("cart-items");
-    cartItemsElement.innerHTML = "";
-    let totalPrice = 0;
-    cartItems.forEach(app => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `${app.name} - $${app.price.toFixed(2)}`;
-        cartItemsElement.appendChild(listItem);
-        totalPrice += app.price;
-    });
-    document.getElementById("total-price").textContent = `$${totalPrice.toFixed(2)}`;
-}
-
-function clearCart() {
-    cartItems = [];
-    updateCartDisplay();
-}
+});
