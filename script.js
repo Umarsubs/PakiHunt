@@ -1,37 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const serverInfoContainer = document.getElementById('server-info');
 
-    const fetchServerInfo = async () => {
-        try {
-            const response = await fetch('https://cod4mw-serverinfo-api.glitch.me/157.175.22.227:29101');
-            const data = await response.json();
-
-            let playersHtml = '';
-            if (data.data.players && data.data.players.length > 0) {
-                playersHtml = '<div><span>Player List:</span><ul>';
-                data.data.players.forEach(player => {
-                    playersHtml += `<li>Name: ${player.name}   |   Ping: ${player.ping}</li>`;
-                });
-                playersHtml += '</ul></div>';
-            } else {
-                playersHtml = '<div><span>Players:</span> No players online</div>';
-            }
-
-            const serverInfoHtml = `
-                <div class="server-details">
-                    <div><span>Name:</span> ${data.data.name}</div>
-                    <div><span>Map:</span> ${data.data.map}</div>
-                    <div><span>Players:</span> ${data.data.players.length} / ${data.data.maxplayers}</div>
-                    ${playersHtml}
-                </div>
-            `;
-
-            serverInfoContainer.innerHTML = serverInfoHtml;
-        } catch (error) {
-            console.error('Error fetching server info:', error);
-            serverInfoContainer.innerHTML = `<div>Error fetching server info</div>`;
-        }
-    };
-
-    fetchServerInfo();
+    try {
+        const response = await fetch('https://cod4mw-serverinfo-api.glitch.me/157.175.22.227:29101');
+        const data = await response.json();
+        
+        const serverInfo = generateServerInfo(data.data);
+        renderServerInfo(serverInfoContainer, serverInfo);
+    } catch (error) {
+        console.error('Error fetching server info:', error);
+        renderError(serverInfoContainer);
+    }
 });
+
+function generateServerInfo(data) {
+    const playersHtml = generatePlayersHtml(data.players);
+
+    return `
+        <div>
+            <div><span>Name:</span> ${data.name}</div>
+            <div><span>Map:</span> ${data.map}</div>
+            <div><span>Players:</span> ${data.players.length} / ${data.maxplayers}</div>
+            ${playersHtml}
+        </div>
+    `;
+}
+
+function generatePlayersHtml(players) {
+    if (!players || players.length === 0) {
+        return '<div><span>Players:</span> No players online</div>';
+    }
+
+    let playersHtml = '<div><span>Player List:</span><ul>';
+    players.forEach(player => {
+        playersHtml += `<li>Name: ${player.name}   |   Ping: ${player.ping}</li>`;
+    });
+    playersHtml += '</ul></div>';
+
+    return playersHtml;
+}
+
+function renderServerInfo(container, serverInfo) {
+    container.innerHTML = serverInfo;
+}
+
+function renderError(container) {
+    container.innerHTML = `<div>Error fetching server info</div>`;
+}
