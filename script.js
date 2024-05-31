@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Populate server details
                 serverInfoHtml += `<div class="server-details">`;
+                serverInfoHtml += `<img src="logo.webp">`;
                 serverInfoHtml += `<div><span>Map:</span><h4> ${data.data.map}</h4></div>`;
                 serverInfoHtml += `<div><span>Players:</span><h4> ${data.data.players.length} / ${data.data.maxplayers}</h4></div>`;
 
