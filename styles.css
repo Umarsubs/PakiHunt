@@ -131,6 +131,10 @@ body {
 }
 
 .join-button {
+   pointer-events: none;
+}
+
+.join-button button {
     text-decoration: none;
     text-align: center;
     color: #fff;
