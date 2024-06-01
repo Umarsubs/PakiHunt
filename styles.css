@@ -133,8 +133,9 @@ body {
 .join-button {
     text-decoration: none;
     text-align: center;
-    text-decoration: none;
     color: #fff;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .join-button h3 {
