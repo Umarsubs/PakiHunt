@@ -134,15 +134,11 @@ body {
     text-decoration: none;
     text-align: center;
     color: #fff;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.join-button h3 {
-    background: #000000;
-    padding: 10px 25px;
+    padding: 8px 15px;
     border-radius: 2em;
-	width: 100px;
+    background: #000000;
+    font-size: 20px;
+    border: 2px solid #35e100;
 }
 
 @media (max-width: 768px) {
