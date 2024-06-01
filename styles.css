@@ -141,6 +141,7 @@ body {
     background: #000000;
     padding: 10px 25px;
     border-radius: 2em;
+	width: 100px;
 }
 
 @media (max-width: 768px) {
