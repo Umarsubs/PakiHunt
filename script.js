@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     serverInfoHtml += `</table>`;
                     serverInfoHtml += `</div>`;
+                    serverInfoHtml += `<h3 class="join-button">Join..</h3>`;
+
+
                 } else {
                     serverInfoHtml += `<div><span>Players:</span> No players online</div>`;
                 }
