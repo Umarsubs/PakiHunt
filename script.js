@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     serverInfoHtml += `</table>`;
                     serverInfoHtml += `</div>`;
-                    serverInfoHtml += `<a class="join-button" href="cod4://${data.host}:${data.port}"><h3>Join Now</h3></a>`;
+                    serverInfoHtml += `<button class="join-button" href="cod4://157.175.22.227:29101">Join Now</button>`;
 
 
                 } else {
