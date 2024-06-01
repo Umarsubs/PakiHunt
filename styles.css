@@ -130,6 +130,11 @@ body {
     border-bottom: 1px solid #f0f0f0;
 }
 
+.join-button {
+    text-decoration: none;
+    background-color: #000000;
+}
+
 @media (max-width: 768px) {
 
     .main {
